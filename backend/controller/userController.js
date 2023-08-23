@@ -174,7 +174,11 @@ exports.getLikedMovies = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id).populate("likedMovies");
     // if user exists send liked movies to client
     if (user) {
-      res.status(200).json(user.likedMovies);
+      res.status(200).json({
+        success: true,
+        message: "Fetch likedMovies user successfully",
+        data: user.likedMovies,
+      });
     } else {
       res.status(404);
       throw new Error("User not found");
@@ -183,3 +187,100 @@ exports.getLikedMovies = asyncHandler(async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+exports.addLikedMovies = asyncHandler(async (req, res) => {
+  const { movieId } = req.body;
+  try {
+    // find user in DB
+    const user = await User.findById(req.user._id);
+    // if user exists add movie to liked movies and save it in DB
+    if (user) {
+      // check if movie already liked
+      // if movie already liked send error message
+      if (user.likedMovies.includes(movieId)) {
+        res.status(400);
+        throw new Error("Movie already liked");
+      }
+      // else add movie to liked movies and save it in DB
+      user.likedMovies.push(movieId);
+      await user.save();
+      res.status(200).json({
+        success: true,
+        message: "Add likedMovie user successfully",
+        data: user.likedMovies,
+      });
+    } else {
+      res.status(404);
+      throw new Error("Movie not found");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+exports.deleteLikedMovies = asyncHandler(async (req, res) => {
+  try {
+    // find user in DB
+    const user = await User.findById(req.user._id);
+    // if user exists delete all  liked movies and save it in DB
+    if (user) {
+      user.likedMovies = [];
+      await user.save();
+      res
+        .status(201)
+        .json({ message: "All liked movies deleted successfully" });
+    } else {
+      res.status(404);
+      throw new Error("Movie not found");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// ******************* ADMIN CONTROLLERS ******************
+exports.getUsers = asyncHandler(async (req, res) => {
+  try {
+    // find user in DB
+    const users = await User.find({});
+    // if user exists send liked movies to client
+    if (users) {
+      res.status(200).json({
+        success: true,
+        message: "Fetch users successfully",
+        data: users,
+      });
+    } else {
+      res.status(404);
+      throw new Error("Not found any user");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+exports.deleteUser = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  try {
+    // find user in DB
+    const user = await User.findById(id);
+    // if user exists send liked movies to client
+    if (user) {
+      // if user is admin throw error message
+      if (user.isAdmin) {
+        res.status(400);
+        throw new Error("Can't delete admin user");
+      }
+      //   else delete user from DB
+      await User.findByIdAndRemove(id);
+      res
+        .status(200)
+        .json({ success: true, message: "User deleted successfully" });
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+exports.deleteUsers = asyncHandler(async (req, res) => {});
