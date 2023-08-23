@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./config/db");
 
 const userRouter = require("./routes/UserRouter");
+const moviesRouter = require("./routes/moviesRouter");
 
 // middlewares
 const { errorHandle } = require("./middlewares/errorMiddleware");
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 // other routes
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/movies", moviesRouter);
 
 //error handling middleware
 app.use(errorHandle);

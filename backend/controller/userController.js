@@ -226,7 +226,7 @@ exports.deleteLikedMovies = asyncHandler(async (req, res) => {
       await user.save();
       res
         .status(201)
-        .json({ message: "All liked movies deleted successfully" });
+        .json({ message: "Your favorites movies deleted successfully" });
     } else {
       res.status(404);
       throw new Error("Movie not found");
