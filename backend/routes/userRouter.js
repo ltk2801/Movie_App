@@ -4,7 +4,7 @@ const { protect, admin } = require("../middlewares/auth");
 
 const router = express.Router();
 
-// post
+// PUBLIC ROUTES
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
 
