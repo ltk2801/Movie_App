@@ -7,12 +7,8 @@ const Footer = () => {
       title: "Công ty",
       links: [
         {
-          name: "Trang chủ",
-          link: "/",
-        },
-        {
           name: "Giới thiệu",
-          link: "/about-ús",
+          link: "/about-us",
         },
         {
           name: "Liên hệ chúng tôi",
@@ -21,6 +17,10 @@ const Footer = () => {
         {
           name: "Chính sách riêng tư",
           link: "/policys",
+        },
+        {
+          name: "Khiếu nại bản quyền",
+          link: "/complaint",
         },
       ],
     },
