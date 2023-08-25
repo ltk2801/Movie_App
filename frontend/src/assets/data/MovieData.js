@@ -11,7 +11,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 2,
     numberOfReviews: 23,
   },
   {
@@ -26,7 +26,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 3.5,
     numberOfReviews: 0,
   },
   {
@@ -41,7 +41,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 4,
     numberOfReviews: 0,
   },
   {
@@ -56,7 +56,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 1,
     numberOfReviews: 0,
   },
   {
@@ -71,7 +71,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 0,
     numberOfReviews: 0,
   },
   {
@@ -86,7 +86,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 4,
     numberOfReviews: 0,
   },
   {
@@ -101,7 +101,7 @@ export const Movies = [
     year: 2008,
     time: 124,
     video: "",
-    rate: 8,
+    rate: 5,
     numberOfReviews: 0,
   },
   {
