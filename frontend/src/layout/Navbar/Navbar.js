@@ -43,7 +43,7 @@ const Navbar = () => {
               Phim Hot
             </NavLink>
             <NavLink to="/about-us" className={Hover}>
-              Chúng Tôi
+              Giới Thiệu
             </NavLink>
             <NavLink to="/contact-us" className={Hover}>
               Liên Hệ
