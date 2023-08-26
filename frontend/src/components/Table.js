@@ -79,7 +79,7 @@ const Table = ({ data, admin }) => {
             <th scope="col" className={`${Head}`}>
               Thời gian
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head} text-end`}>
               Hành động
             </th>
           </tr>

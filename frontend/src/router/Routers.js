@@ -16,6 +16,9 @@ import Password from "../screens/dashboard/Password";
 import FavoritesMovies from "../screens/dashboard/FavoritesMovies";
 import MovieList from "../screens/dashboard/Admin/MovieList";
 import Dashboard from "../screens/dashboard/Admin/Dashboard";
+import Categories from "../screens/dashboard/Admin/Categories";
+import Users from "../screens/dashboard/Admin/Users";
+import AddMovie from "../screens/dashboard/Admin/AddMovie";
 
 const Routers = () => {
   return (
@@ -35,6 +38,9 @@ const Routers = () => {
       <Route path="/favorites" element={<FavoritesMovies />} />
       <Route path="/movieslist" element={<MovieList />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/users" element={<Users />} />
+      <Route path="/addmovie" element={<AddMovie />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
