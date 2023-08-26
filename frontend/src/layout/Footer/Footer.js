@@ -54,7 +54,7 @@ const Footer = () => {
         },
         {
           name: "Danh sách phim yêu thích",
-          link: "/favorite",
+          link: "/favorites",
         },
         {
           name: "Hồ sơ",

@@ -13,7 +13,7 @@ const Register = () => {
           className="w-full h-24 object-contain"
         />
         <Input
-          label="FullName"
+          label="Họ và tên"
           placeholder="Lưu Tuấn Khanh"
           type="text"
           bg={true}

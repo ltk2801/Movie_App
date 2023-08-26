@@ -11,6 +11,11 @@ import SingleMovie from "../screens/SingleMovie";
 import WatchPage from "../screens/WatchPage";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import Profile from "../screens/dashboard/Profile";
+import Password from "../screens/dashboard/Password";
+import FavoritesMovies from "../screens/dashboard/FavoritesMovies";
+import MovieList from "../screens/dashboard/Admin/MovieList";
+import Dashboard from "../screens/dashboard/Admin/Dashboard";
 
 const Routers = () => {
   return (
@@ -25,6 +30,11 @@ const Routers = () => {
       <Route path="/watch/:id" element={<WatchPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/password" element={<Password />} />
+      <Route path="/favorites" element={<FavoritesMovies />} />
+      <Route path="/movieslist" element={<MovieList />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
