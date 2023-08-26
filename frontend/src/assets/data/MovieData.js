@@ -165,3 +165,72 @@ export const Movies = [
     numberOfReviews: 0,
   },
 ];
+
+export const Casts = [
+  {
+    name: "Kenneth Branagh",
+    birthDate: "1960-12-10",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMjI0NTQ4Mjk5Ml5BMl5BanBnXkFtZTcwMDc1NjkzNw@@._V1_.jpg",
+    gender: "male",
+    height: 177,
+    message:
+      "Holy rusted metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    rate: 3,
+  },
+  {
+    name: "Michael Douglas",
+    birthDate: "1944-09-25",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMTQ3NzMzOTQ3MF5BMl5BanBnXkFtZTcwOTE0MzY1Mw@@._V1_.jpg",
+    gender: "male",
+    height: 178,
+    message:
+      "Holy rusted metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    rate: 2.5,
+  },
+  {
+    name: "Samuel L. Jackson",
+    birthDate: "1948-12-21",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMTQ1NTQwMTYxNl5BMl5BanBnXkFtZTYwMjA1MzY1._V1_.jpg",
+    gender: "male",
+    height: 188,
+    message:
+      "Holy rust,ed metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    rate: 0,
+  },
+  {
+    name: "Michelle Pfeiffer",
+    birthDate: "1958-04-29",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BMTUzNjI0Njc5NF5BMl5BanBnXkFtZTYwOTM2MjYz._V1_.jpg",
+    message:
+      "Holy rusted metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    gender: "female",
+    height: 171,
+    rate: 5,
+  },
+  {
+    name: "Natalie Portman",
+    birthDate: "1981-06-09",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BYzU0ZGRhZWItMGJlNy00YzlkLWIzOWYtNDA2NzlhMDg3YjMwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+    message:
+      "Holy rusted metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    gender: "male",
+    height: 160,
+    rate: 1.5,
+  },
+  {
+    name: "Robert Downey Jr.",
+    birthDate: "1965-04-04",
+    image:
+      "https://m.media-amazon.com/images/M/MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_.jpg",
+    message:
+      "Holy rusted metal, the Dynamic Duo started in a comic masterpiece! This movie accompanied the wacky TV series. It has Batman (Adam West) and Robin (Burt Ward)  It's a camp classic!",
+    gender: "male",
+    height: 173,
+    rate: 0.5,
+  },
+];

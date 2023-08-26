@@ -58,6 +58,9 @@ const TopRated = () => {
                     <Rating value={movie.rate} />
                   </div>
                 </div>
+                <div className="absolute top-0 left-0 bg-subMain text-white flex-colo px-4 py-3 w-16 h-10 text-sm">
+                  <h6 className=" truncate">HD </h6>
+                </div>
               </div>
             </SwiperSlide>
           ))}

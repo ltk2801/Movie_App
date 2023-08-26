@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "../components/Head";
-import { TbMovie } from "react-icons/tb";
-import { FaUserPlus, FaVoicemail } from "react-icons/fa";
+
 import { FiMail, FiMapPin, FiPhoneCall } from "react-icons/fi";
 
 const ContactUs = () => {

@@ -6,6 +6,8 @@ import ContactUs from "../screens/ContactUs";
 import Policys from "../screens/Policys";
 import NotFound from "../screens/NotFound";
 import Complaint from "../screens/Complaint";
+import MoviesPage from "../screens/Movies";
+import SingleMovie from "../screens/SingleMovie";
 
 const Routers = () => {
   return (
@@ -15,6 +17,8 @@ const Routers = () => {
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/policys" element={<Policys />} />
       <Route path="/complaint" element={<Complaint />} />
+      <Route path="/movies" element={<MoviesPage />} />
+      <Route path="/movie/:id" element={<SingleMovie />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

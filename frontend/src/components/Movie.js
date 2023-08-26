@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-const Movie = ({ movie }) => {
+const Movie = ({ movie, home }) => {
   return (
     <>
       <div className="border border-border p-1 hover:scale-95 transitions relative rounded overflow-hidden">
-        <Link to={`/movies/${movie?.name}`} className="w-full">
+        <Link to={`/movie/${movie?.name}`} className="w-full">
           <img
             src={movie?.image}
             alt={movie.name}
@@ -18,6 +18,11 @@ const Movie = ({ movie }) => {
             <FaHeart />
           </button>
         </div>
+        {home && (
+          <div className="absolute top-0 left-0 bg-subMain text-white flex-colo px-4 py-3 w-20 h-10 text-sm">
+            <h4 className=" truncate">NỔI BẬT </h4>
+          </div>
+        )}
       </div>
     </>
   );
