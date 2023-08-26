@@ -8,6 +8,9 @@ import NotFound from "../screens/NotFound";
 import Complaint from "../screens/Complaint";
 import MoviesPage from "../screens/Movies";
 import SingleMovie from "../screens/SingleMovie";
+import WatchPage from "../screens/WatchPage";
+import Login from "../screens/Login";
+import Register from "../screens/Register";
 
 const Routers = () => {
   return (
@@ -19,6 +22,9 @@ const Routers = () => {
       <Route path="/complaint" element={<Complaint />} />
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/movie/:id" element={<SingleMovie />} />
+      <Route path="/watch/:id" element={<WatchPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
