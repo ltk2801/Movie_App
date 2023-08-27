@@ -29,12 +29,28 @@ const TopRated = () => {
       <div className="mt-10">
         <Swiper
           navigation={{ nextEl, prevEl }}
-          slidesPerView={4}
-          spaceBetween={40}
           autoplay={true}
           loop={true}
           speed={1000}
           modules={[Navigation, Autoplay]}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            758: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+          }}
         >
           {Movies?.map((movie, index) => (
             <SwiperSlide key={index}>
