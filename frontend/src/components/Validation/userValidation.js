@@ -24,7 +24,23 @@ const RegisterValidation = yup.object().shape({
     .string()
     .required("Họ và tên phải bắt buộc")
     .max(20, "Mật khẩu phải nhỏ hơn 20 ký tự")
-    .matches(/^[a-zA-Z]*$/, "Họ và tên chỉ được phép chứa chữ"),
+    .matches(
+      /^[a-zA-Z\sÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐàáâãèéêìíòóôõùúăđĨĩŨũƠơỨứỳỹ\s]*$/,
+      "Họ và tên chỉ được phép chứa chữ"
+    ),
 });
 
-export { LoginValidation, RegisterValidation };
+//
+const ProfileValidation = yup.object().shape({
+  fullName: yup
+    .string()
+    .required("Họ và tên phải bắt buộc")
+    .max(20, "Mật khẩu phải nhỏ hơn 20 ký tự")
+    .matches(
+      /^[a-zA-Z\sÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐàáâãèéêìíòóôõùúăđĨĩŨũƠơỨứỳỹ\s]*$/,
+      "Họ và tên chỉ được phép chứa chữ"
+    ),
+  email: yup.string().email().required("Email phải bắt buộc").trim(),
+});
+
+export { LoginValidation, RegisterValidation, ProfileValidation };

@@ -24,5 +24,17 @@ const loginService = async (user) => {
   }
   return data.data;
 };
+// update profile call API
+const updateProfileService = async (user, token) => {
+  const { data } = await Axios.put("/users/profile", user, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (data) {
+    localStorage.setItem("userInfo", JSON.stringify(data.data));
+  }
+  return data.data;
+};
 
-export { registerService, logoutService, loginService };
+export { registerService, logoutService, loginService, updateProfileService };

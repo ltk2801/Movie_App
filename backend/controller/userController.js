@@ -87,8 +87,11 @@ exports.updateUserProfile = asyncHandler(async (req, res) => {
     // if user exists and update user data and save it in DB
     if (user) {
       // if email exists and send error
-      const haveEmail = await User.findOne({ email });
-      if (haveEmail) {
+      const haveEmail = await User.find({
+        email: email,
+        _id: { $ne: user._id },
+      });
+      if (haveEmail.length > 0) {
         res.status(400);
         throw new Error("Email đã được sử dụng");
       }

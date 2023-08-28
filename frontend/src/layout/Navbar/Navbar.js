@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaSearch, FaHeart } from "react-icons/fa";
-import { CgUser } from "react-icons/cg";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { userInfo } = useSelector((state) => state.userLogin);
+
   const hover = "hover:text-subMain transitions text-white";
   const Hover = ({ isActive }) => (isActive ? "text-subMain" : hover);
 
@@ -38,7 +40,7 @@ const Navbar = () => {
             </form>
           </div>
           {/* MENUS */}
-          <div className="col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center">
+          <div className="col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-16 justify-between lg:flex xl:justify-end items-center">
             <NavLink to="/movies" className={Hover}>
               Phim Hot
             </NavLink>
@@ -48,14 +50,42 @@ const Navbar = () => {
             <NavLink to="/contact-us" className={Hover}>
               Liên Hệ
             </NavLink>
-            <NavLink to="/login" className={Hover}>
-              <CgUser className="w-8 h-8" />
+            <NavLink
+              to={
+                userInfo?.isAdmin
+                  ? "/dashboard"
+                  : userInfo
+                  ? "/profile"
+                  : "/login"
+              }
+              className={Hover}
+            >
+              {userInfo ? (
+                <img
+                  src={userInfo?.image ? userInfo.image : "/images/avatar.jpg"}
+                  alt={userInfo?.fullName}
+                  className="w-8 h-8 rounded-full border object-cover border-subMain"
+                />
+              ) : (
+                // <CgUser className="w-8 h-8" />
+                "Đăng Nhập"
+              )}
             </NavLink>
-            <NavLink to="/favorites" className={`${Hover} relative`}>
-              <FaHeart className="w-6 h-6" />
-              <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
-                3
-              </div>
+            <NavLink
+              to={userInfo ? "/favorites" : "/register"}
+              className={userInfo ? `${Hover} relative` : Hover}
+            >
+              {userInfo ? (
+                <>
+                  {" "}
+                  <FaHeart className="w-6 h-6" />
+                  <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
+                    3
+                  </div>
+                </>
+              ) : (
+                "Đăng Ký"
+              )}
             </NavLink>
           </div>
         </div>

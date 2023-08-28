@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InlineError } from "../components/Notifications/Error";
 import { loginAction } from "../redux/Actions/userActions";
+
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -45,6 +46,7 @@ const Login = () => {
     }
     if (isError) {
       toast.error(isError);
+      dispatch({ type: "USER_LOGIN_RESET" });
     }
   }, [userInfo, isSuccess, isError, navigate, dispatch]);
 
