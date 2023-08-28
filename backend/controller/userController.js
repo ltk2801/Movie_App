@@ -14,7 +14,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     {
       if (userExists) {
         res.status(400);
-        throw new Error("User already exists");
+        throw new Error("Email này đã được sử dụng");
       }
     }
     // hash password
@@ -38,13 +38,13 @@ exports.registerUser = asyncHandler(async (req, res) => {
           fullName: newUser.fullName,
           email: newUser.email,
           image: newUser.image,
-          isAdminL: newUser.isAdmin,
+          isAdmin: newUser.isAdmin,
           token: generateToken(newUser._id),
         },
       });
     } else {
       res.status(400);
-      throw new Error("Invalid user data");
+      throw new Error("Không tìm thấy người dùng");
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -65,7 +65,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
           fullName: user.fullName,
           email: user.email,
           image: user.image,
-          isAdminL: user.isAdmin,
+          isAdmin: user.isAdmin,
           token: generateToken(user._id),
         },
       });
@@ -73,7 +73,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
     // if user not found our password not match send error message
     else {
       res.status(401);
-      throw new Error("Invalid email or password ");
+      throw new Error("Sai email hoặc password ");
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -90,7 +90,7 @@ exports.updateUserProfile = asyncHandler(async (req, res) => {
       const haveEmail = await User.findOne({ email });
       if (haveEmail) {
         res.status(400);
-        throw new Error("Email already exists");
+        throw new Error("Email đã được sử dụng");
       }
       user.fullName = fullName || user.fullName;
       user.email = email || user.email;
@@ -106,7 +106,7 @@ exports.updateUserProfile = asyncHandler(async (req, res) => {
           fullName: updatedUser.fullName,
           email: updatedUser.email,
           image: updatedUser.image,
-          isAdminL: updatedUser.isAdmin,
+          isAdmin: updatedUser.isAdmin,
           token: generateToken(updatedUser._id),
         },
       });
