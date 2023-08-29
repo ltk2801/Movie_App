@@ -3,12 +3,35 @@ import SideBar from "../SideBar";
 
 import { HiPlusCircle } from "react-icons/hi";
 import Table2 from "../../../components/Table2";
-import { CategoriesData } from "../../../assets/data/CategoriesData";
 import CategoryModal from "../../../components/Modals/CategoryModal";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  DeleteCategoryAction,
+  getAllCategoriesAction,
+} from "../../../redux/Actions/categoryAction";
+import Loader from "../../../components/Notifications/Loader";
+import { Empty } from "../../../components/Notifications/Empty";
+import toast from "react-hot-toast";
 
 const Categories = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [category, setCategory] = useState();
+
+  const dispatch = useDispatch();
+
+  // all categories
+  const { categories, isLoading } = useSelector(
+    (state) => state.categoryGetAll
+  );
+  // delete category
+  const { isSuccess: deleteSuccess, isError: deleteError } = useSelector(
+    (state) => state.categoryDelete
+  );
+  const adminDeleteCategoryHandler = (id) => {
+    window.confirm("Bạn thật sự muốn xóa thể loại phim này ?") &&
+      dispatch(DeleteCategoryAction(id));
+  };
 
   const onEditFunction = (dataCategory) => {
     setCategory(dataCategory);
@@ -16,10 +39,21 @@ const Categories = () => {
   };
 
   useEffect(() => {
+    // get all categories
+    dispatch(getAllCategoriesAction());
     if (modalOpen === false) {
       setCategory();
     }
-  }, [modalOpen]);
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch({
+        type: "DELETE_CATEGORY_RESET",
+      });
+    }
+    if (deleteSuccess) {
+      dispatch({ type: "DELETE_CATEGORY_SUCCESS" });
+    }
+  }, [modalOpen, dispatch, deleteError, deleteSuccess]);
 
   return (
     <SideBar>
@@ -38,11 +72,19 @@ const Categories = () => {
             <HiPlusCircle /> Thêm
           </button>
         </div>
-        <Table2
-          data={CategoriesData}
-          users={false}
-          onEditFunction={onEditFunction}
-        />
+
+        {isLoading ? (
+          <Loader />
+        ) : categories?.length > 0 ? (
+          <Table2
+            data={categories}
+            users={false}
+            onEditFunction={onEditFunction}
+            onDeleteFunction={adminDeleteCategoryHandler}
+          />
+        ) : (
+          <Empty message="Danh sách thể loại phim trống" />
+        )}
       </div>
     </SideBar>
   );

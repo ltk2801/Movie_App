@@ -45,12 +45,10 @@ const Rows = ({ data, users, onEditFunction, onDeleteFunction }) => {
         // Categories
         <>
           <td className={`${Text} font-bold `}>
-            {data?._id ? data._id : "2R75T8"}
+            {data?._id ? shortUppercaseId(data?._id) : "2R75T8"}
           </td>
-          <td className={`${Text}`}>
-            {data.createAt ? data.createAt : "26,Aug 2023"}
-          </td>
-          <td className={`${Text}`}>{data.title}</td>
+          <td className={`${Text}`}>{dateFormat(data?.createdAt)}</td>
+          <td className={`${Text}`}>{data?.title}</td>
           <td className={`${Text} float-right flex-rows gap-2`}>
             <button
               onClick={() => onEditFunction(data)}
@@ -58,7 +56,10 @@ const Rows = ({ data, users, onEditFunction, onDeleteFunction }) => {
             >
               Sửa <FaEdit className="text-green-500" />
             </button>
-            <button className="bg-subMain text-white rounded flex-colo w-6 h-6">
+            <button
+              onClick={() => onDeleteFunction(data?._id)}
+              className="bg-subMain text-white rounded flex-colo w-6 h-6"
+            >
               <MdDelete />
             </button>
           </td>

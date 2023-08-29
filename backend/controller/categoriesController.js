@@ -5,11 +5,6 @@ exports.getCategories = asyncHandler(async (req, res, next) => {
   try {
     const categories = await Categories.find({});
 
-    if (categories.length === 0) {
-      const error = new Error("No data in categories");
-      error.statusCode = 400;
-      throw error;
-    }
     res.status(200).json({
       success: true,
       message: "Successfully fetch categories",
@@ -26,6 +21,14 @@ exports.getCategories = asyncHandler(async (req, res, next) => {
 exports.createCategory = asyncHandler(async (req, res, next) => {
   try {
     const newCategory = new Categories(req.body);
+    // if category exists and send error
+    const haveCategory = await Categories.find({
+      title: { $regex: new RegExp("^" + req.body.title + "$", "i") },
+    });
+    if (haveCategory.length > 0) {
+      res.status(400);
+      throw new Error("Thể loại phim đã có");
+    }
     const savedCategory = await newCategory.save();
     res.status(200).json({
       success: true,
@@ -40,9 +43,18 @@ exports.createCategory = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.updateCategory = asyncHandler(async (req, res) => {
+exports.updateCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   try {
+    // if email exists and send error
+    const haveCategory = await Categories.find({
+      title: { $regex: new RegExp("^" + req.body.title + "$", "i") },
+      _id: { $ne: id },
+    });
+    if (haveCategory.length > 0) {
+      res.status(400);
+      throw new Error("Tên thể loại đã có");
+    }
     const updateCategory = await Categories.findByIdAndUpdate(
       id,
       {
@@ -57,10 +69,10 @@ exports.updateCategory = asyncHandler(async (req, res) => {
       data: updateCategory,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Failed to update",
-    });
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
   }
 });
 
