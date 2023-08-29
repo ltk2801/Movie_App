@@ -37,4 +37,31 @@ const ProfileValidation = yup.object().shape({
   email: yup.string().email().required("Email phải bắt buộc").trim(),
 });
 
-export { LoginValidation, RegisterValidation, ProfileValidation };
+const PasswordValidation = yup.object().shape({
+  oldPassword: yup
+    .string()
+    .required("Password phải bắt buộc")
+    .min(6, "Mật khẩu phải ít nhất 6 ký tự")
+    .max(20, "Mật khẩu phải nhỏ hơn 20 ký tự")
+    .matches(/(?=.*[0-9])/, "Mật khẩu phải chứa một số"),
+  newPassword: yup
+    .string()
+    .required("Password phải bắt buộc")
+    .min(6, "Mật khẩu phải ít nhất 6 ký tự")
+    .max(20, "Mật khẩu phải nhỏ hơn 20 ký tự")
+    .matches(/(?=.*[0-9])/, "Mật khẩu phải chứa một số"),
+  confirmPassword: yup
+    .string()
+    .required("Password phải bắt buộc")
+    .min(6, "Mật khẩu phải ít nhất 6 ký tự")
+    .max(20, "Mật khẩu phải nhỏ hơn 20 ký tự")
+    .matches(/(?=.*[0-9])/, "Mật khẩu phải chứa một số")
+    .oneOf([yup.ref("newPassword"), null], "Mật khẩu không chính xác"),
+});
+
+export {
+  LoginValidation,
+  RegisterValidation,
+  ProfileValidation,
+  PasswordValidation,
+};

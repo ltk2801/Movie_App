@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
   userRegister: User.userRegisterReducer,
   userUpdateProfile: User.userUpdateProfileReducer,
   userDeleteProfile: User.userDeleteProfileReducer,
+  userChangePassword: User.userChangePasswordReducer,
 });
 
 // get userInfo from localStorage

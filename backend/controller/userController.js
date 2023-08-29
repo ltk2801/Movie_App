@@ -159,13 +159,13 @@ exports.changeUserPassword = asyncHandler(async (req, res) => {
       await user.save();
       res.status(200).json({
         success: true,
-        message: "Password changed ! ",
+        message: "Mật khẩu thay đổi thành công  ",
       });
     }
     // if user not found our password not match send error message
     else {
       res.status(401);
-      throw new Error("Invalid old password ");
+      throw new Error("Mật khẩu cũ không đúng ");
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
