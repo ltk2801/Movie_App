@@ -57,7 +57,7 @@ const Rows = (movie, i, admin) => {
 // Table
 const Table = ({ data, admin }) => {
   return (
-    <div className="sm:overflow-x-scroll overflow-hidden relative w-full">
+    <div className=" overflow-hidden relative w-full">
       <table className="w-full table-auto border border-border divide-y divide-border">
         <thead>
           <tr className="bg-dryGray">
