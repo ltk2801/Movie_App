@@ -74,11 +74,38 @@ exports.getMovies = asyncHandler(async (req, res) => {
   try {
     // filter movies by category,time,language,rate,year and search
     const { category, time, language, rate, year, search } = req.query;
+
+    // Tạo một đối tượng để ánh xạ các khoảng thời gian tương ứng
+    const timeRanges = {
+      "030": { min: 0, max: 30 },
+      3060: { min: 30, max: 60 },
+      6090: { min: 60, max: 90 },
+      90120: { min: 90, max: 120 },
+      120150: { min: 120, max: 150 },
+      150180: { min: 150, max: 180 },
+      180210: { min: 180, max: 210 },
+      210240: { min: 210, max: 240 },
+      240270: { min: 240, max: 270 },
+    };
+    // Tạo một đối tượng để ánh xạ các khoảng đánh giá tương ứng
+    const rateRanges = {
+      0: { min: 0, max: 1 },
+      1: { min: 1, max: 2 },
+      2: { min: 2, max: 3 },
+      3: { min: 3, max: 4 },
+      4: { min: 4, max: 5 },
+      5: { min: 5, max: 6 },
+    };
+
     let query = {
       ...(category && { category }),
-      ...(time && { time }),
+      ...(time && {
+        time: { $gte: timeRanges[time].min, $lt: timeRanges[time].max },
+      }),
       ...(language && { language }),
-      ...(rate && { rate }),
+      ...(rate && {
+        rate: { $gte: rateRanges[rate].min, $lt: rateRanges[rate].max },
+      }),
       ...(year && { year }),
       ...(search && { name: { $regex: search, $options: "i" } }),
     };
@@ -103,7 +130,7 @@ exports.getMovies = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Failed to create. Try again",
+      message: "Failed to fetch. Try again",
     });
   }
 });
