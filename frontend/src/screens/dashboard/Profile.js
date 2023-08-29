@@ -2,26 +2,31 @@ import React, { useEffect, useState } from "react";
 import Uploader from "../../components/Uploader";
 import SideBar from "./SideBar";
 import { Input } from "../../components/UsedInput";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ProfileValidation } from "../../components/Validation/userValidation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InlineError } from "../../components/Notifications/Error";
-import { updateProfileAction } from "../../redux/Actions/userActions";
+import {
+  deleteProfileAction,
+  updateProfileAction,
+} from "../../redux/Actions/userActions";
 
 import toast from "react-hot-toast";
 import { ImagePreview } from "../../components/ImagePreview";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.userLogin);
 
   const [imageUrl, setImageUrl] = useState(userInfo ? userInfo.image : "");
 
   const { isLoading, isError, isSuccess } = useSelector(
     (state) => state.userUpdateProfile
+  );
+
+  const { isLoading: deleteLoading, isError: deleteError } = useSelector(
+    (state) => state.userDeleteProfile
   );
   // validate userInput
   const {
@@ -33,9 +38,15 @@ const Profile = () => {
     resolver: yupResolver(ProfileValidation),
   });
 
-  // on submit
+  // on submit update profile
   const onSubmit = (data) => {
     dispatch(updateProfileAction({ ...data, image: imageUrl }));
+  };
+
+  // on submit delete profile
+  const deleteProfile = () => {
+    window.confirm("Bạn thật sự muốn xóa tài khoản của mình ") &&
+      dispatch(deleteProfileAction());
   };
 
   // useEffect
@@ -47,10 +58,12 @@ const Profile = () => {
     if (isSuccess) {
       dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
     }
-    if (isError) {
-      toast.error(isError);
+    if (isError || deleteError) {
+      toast.error(isError || deleteError);
+      dispatch({ type: "USER_DELETE_PROFILE_RESET" });
+      dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
     }
-  }, [userInfo, setValue, isError, dispatch, isSuccess]);
+  }, [userInfo, setValue, isError, dispatch, isSuccess, deleteError]);
 
   return (
     <SideBar>
@@ -92,10 +105,19 @@ const Profile = () => {
           {errors.email && <InlineError text={errors.email.message} />}
         </div>
         <div className="flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4">
-          <button className="bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto">
-            Xóa Tài Khoản
+          <button
+            onClick={deleteProfile}
+            type="button"
+            disabled={deleteLoading || isLoading}
+            className="bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto"
+          >
+            {deleteLoading ? "Đang Xóa Tài Khoản..." : "Xóa Tài Khoản"}
           </button>
-          <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto">
+          <button
+            disabled={deleteLoading || isLoading}
+            type="submit"
+            className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto"
+          >
             {isLoading ? "Đang Cập Nhật..." : "Cập Nhật Tài Khoản"}
           </button>
         </div>

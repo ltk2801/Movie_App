@@ -130,7 +130,7 @@ exports.deleteUserProfile = asyncHandler(async (req, res) => {
       // if user is admin throw error message
       if (user.isAdmin) {
         res.status(400);
-        throw new Error("Can't delete admin user");
+        throw new Error("Không thể xóa tài khoản admin");
       }
       //   else delete user from DB
       await User.findByIdAndRemove(user._id);

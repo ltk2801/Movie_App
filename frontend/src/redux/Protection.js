@@ -15,8 +15,10 @@ export const ErrorsAction = (error, dispatch, action) => {
 
 export const tokenProtection = (getState) => {
   const {
+    // lấy ra userInfo từ userLogin từ getState lấy ra trạng thái của redux
     userLogin: { userInfo },
   } = getState();
+
   if (!userInfo?.token) {
     return null;
   } else {
