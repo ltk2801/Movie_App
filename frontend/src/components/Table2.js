@@ -70,31 +70,31 @@ const Table2 = ({ data, users, onEditFunction }) => {
           <tr className="bg-dryGray">
             {users ? (
               <>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Hình ảnh
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Id
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Họ và tên
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Email
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Ngày tạo
                 </th>
               </>
             ) : (
               <>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Id
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Ngày tạo
                 </th>
-                <th scope="col" className={`${Head}`}>
+                <th scope="col" className={`${Head}  border-r border-border`}>
                   Tên thể loại
                 </th>
               </>

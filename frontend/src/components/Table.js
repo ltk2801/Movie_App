@@ -25,7 +25,7 @@ const Rows = (movie, i, admin) => {
       <td className={`${Text}`}>{movie.category}</td>
       <td className={`${Text}`}>{movie.language}</td>
       <td className={`${Text}`}>{movie.year}</td>
-      <td className={`${Text}`}>{movie.time}</td>
+      <td className={`${Text}`}>{movie.time} phút</td>
       <td className={`${Text} float-right flex-rows gap-2`}>
         {admin ? (
           <>
@@ -42,7 +42,7 @@ const Rows = (movie, i, admin) => {
               Tải về <FaCloudDownloadAlt className="text-green-500" />
             </button>
             <Link
-              to={`/movie/${movie?.name}`}
+              to={`/movie/${movie?._id}`}
               className="bg-subMain text-white rounded flex-colo w-6 h-6"
             >
               <GoEye />
@@ -57,26 +57,26 @@ const Rows = (movie, i, admin) => {
 // Table
 const Table = ({ data, admin }) => {
   return (
-    <div className="overflow-x-scroll overflow-hidden relative w-full">
+    <div className="sm:overflow-x-scroll overflow-hidden relative w-full">
       <table className="w-full table-auto border border-border divide-y divide-border">
         <thead>
           <tr className="bg-dryGray">
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head} border-r border-border`}>
               Hình ảnh
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head}  border-r border-border`}>
               Tên
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head}  border-r border-border`}>
               Thể loại
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head}  border-r border-border`}>
               Ngôn ngữ
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head}  border-r border-border`}>
               năm phát hành
             </th>
-            <th scope="col" className={`${Head}`}>
+            <th scope="col" className={`${Head}  border-r border-border`}>
               Thời gian
             </th>
             <th scope="col" className={`${Head} text-end`}>
