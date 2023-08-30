@@ -7,8 +7,11 @@ import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
 import { TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import { getAllMoviesAction } from "../redux/Actions/movieAction";
+import { useParams } from "react-router-dom";
 
 const MoviesPage = () => {
+  const { search } = useParams();
+
   const dispatch = useDispatch();
   const sameClass =
     "text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain";
@@ -39,6 +42,7 @@ const MoviesPage = () => {
         language: language,
         rate: rate,
         year: year,
+        search: search ? search : "",
         pageNumber: page + 1,
       })
     );
@@ -52,6 +56,7 @@ const MoviesPage = () => {
         language: language,
         rate: rate,
         year: year,
+        search: search ? search : "",
         pageNumber: page - 1,
       })
     );
@@ -59,13 +64,13 @@ const MoviesPage = () => {
 
   return (
     <div className="min-height-screen container mx-auto px-2 my-6">
-      <Filters categories={categories} />
+      <Filters categories={categories} search={search} />
       <p className="text-lg font-medium my-6">
         Tổng cộng{" "}
         <span className="font-bold text-subMain">
           {totalMovies ? totalMovies : 0}
         </span>{" "}
-        bộ phim được tìm thấy
+        bộ phim được tìm thấy {search && `liên quan tới "${search}"`}
       </p>
       {isLoading ? (
         <div className="w-full gap-6 flex-colo min-h-screen">

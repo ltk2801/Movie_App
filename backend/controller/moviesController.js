@@ -111,7 +111,7 @@ exports.getMovies = asyncHandler(async (req, res) => {
     };
     // pagination
     const page = Number(req.query.pageNumber) || 1;
-    const limit = 2;
+    const limit = 4;
     const skip = (page - 1) * limit;
 
     // find movies by query
@@ -179,7 +179,7 @@ exports.getTopRatedMovies = asyncHandler(async (req, res) => {
 exports.getRandomMovies = asyncHandler(async (req, res) => {
   try {
     // find movies by query
-    const movies = await Movie.aggregate([{ $sample: { size: 4 } }]);
+    const movies = await Movie.aggregate([{ $sample: { size: 8 } }]);
 
     res.status(200).json({
       success: true,

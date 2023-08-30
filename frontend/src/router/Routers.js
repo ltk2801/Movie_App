@@ -36,6 +36,7 @@ const Routers = () => {
           <Route path="/policys" element={<Policys />} />
           <Route path="/complaint" element={<Complaint />} />
           <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:search" element={<MoviesPage />} />
           <Route path="/movie/:id" element={<SingleMovie />} />
           <Route path="/watch/:id" element={<WatchPage />} />
           <Route path="/login" element={<Login />} />

@@ -1,15 +1,28 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
   const { userInfo } = useSelector((state) => state.userLogin);
   // get Favorite Movies
   const { likedMovies } = useSelector((state) => state.userGetFavoriteMovies);
 
   const hover = "hover:text-subMain transitions text-white";
   const Hover = ({ isActive }) => (isActive ? "text-subMain" : hover);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      navigate(`/movies/${search}`);
+      setSearch(search);
+    } else {
+      navigate(`/movies`);
+    }
+  };
 
   return (
     <>
@@ -27,7 +40,10 @@ const Navbar = () => {
           </div>
           {/* SEARCH FORM  */}
           <div className="col-span-3">
-            <form className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
+            <form
+              onSubmit={handleSearch}
+              className="w-full text-sm bg-dryGray rounded flex-btn gap-4"
+            >
               <button
                 type="submit"
                 className="bg-subMain w-12 flex-colo h-12 rounded text-white"
@@ -35,8 +51,10 @@ const Navbar = () => {
                 <FaSearch />
               </button>
               <input
-                type="text"
-                placeholder="Tìm kiếm tên bộ phim tại đây "
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Tìm kiếm tên bộ phim "
                 className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black"
               />
             </form>

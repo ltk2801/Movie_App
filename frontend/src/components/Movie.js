@@ -5,10 +5,10 @@ const Movie = ({ movie, home }) => {
   return (
     <>
       <div className="border border-border p-1 hover:scale-95 transitions relative rounded overflow-hidden">
-        <Link to={`/movie/${movie?.name}`} className="w-full">
+        <Link to={`/movie/${movie?._id}`} className="w-full">
           <img
-            src={movie?.image}
-            alt={movie.name}
+            src={movie?.image ? movie?.image : "/images/imageMovie.jpg"}
+            alt={movie?.name}
             className="w-full h-96 object-cover"
           />
         </Link>

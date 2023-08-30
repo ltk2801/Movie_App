@@ -34,3 +34,55 @@ export const searchKeyMoviesReducer = (state = {}, action) => {
       return state;
   }
 };
+
+// GET RANDOM MOVIE
+
+export const GetRandomMoviesReducer = (state = { movies: [] }, action) => {
+  switch (action.type) {
+    case moviesConstant.MOVIES_RANDOM_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.MOVIES_RANDOM_SUCCESS:
+      return {
+        isLoading: false,
+        movies: action.payload,
+      };
+    case moviesConstant.MOVIES_RANDOM_FAIL:
+      return { isLoading: false, isError: action.payload };
+    default:
+      return state;
+  }
+};
+// GET  MOVIE
+export const GetMovieReducer = (state = { movie: {} }, action) => {
+  switch (action.type) {
+    case moviesConstant.MOVIE_DETAILS_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.MOVIE_DETAILS_SUCCESS:
+      return {
+        isLoading: false,
+        movie: action.payload,
+      };
+    case moviesConstant.MOVIE_DETAILS_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case moviesConstant.MOVIE_DETAILS_RESET:
+      return { movie: {} };
+    default:
+      return state;
+  }
+};
+// GET TOP RATED MOVIE
+export const GetTopRatedMoviesReducer = (state = { movies: [] }, action) => {
+  switch (action.type) {
+    case moviesConstant.MOVIES_TOP_RATED_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.MOVIES_TOP_RATED_SUCCESS:
+      return {
+        isLoading: false,
+        movies: action.payload,
+      };
+    case moviesConstant.MOVIES_TOP_RATED_FAIL:
+      return { isLoading: false, isError: action.payload };
+    default:
+      return state;
+  }
+};

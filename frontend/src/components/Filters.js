@@ -78,7 +78,7 @@ const LanguageData = [
   { title: "Tiếng Pháp " },
 ];
 
-const Filters = ({ categories }) => {
+const Filters = ({ categories, search }) => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState({ title: "Thể Loại Phim" });
   const [year, setYear] = useState(yearData[0]);
@@ -126,11 +126,11 @@ const Filters = ({ categories }) => {
           language: language?.title === "Ngôn Ngữ" ? "" : language?.title,
           rate: rate?.title.replace(/\D/g, ""),
           year: year?.title.replace(/\D/g, ""),
-          search: "",
+          search: search ? search : "",
         })
       );
     }
-  }, [category, language, year, time, rate, dispatch]);
+  }, [category, language, year, time, rate, dispatch, search]);
 
   return (
     <div className="my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-5 grid-cols-2 lg:gap-12 gap-2 rounded p-6">
