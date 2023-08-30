@@ -14,6 +14,7 @@ const getAllMoviesAction =
     year = "",
     search = "",
     pageNumber = "",
+    limit = "",
   }) =>
   async (dispatch) => {
     try {
@@ -27,7 +28,8 @@ const getAllMoviesAction =
         rate,
         year,
         search,
-        pageNumber
+        pageNumber,
+        limit
       );
       dispatch({
         type: moviesConstant.MOVIES_LIST_SUCCESS,

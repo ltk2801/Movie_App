@@ -3,13 +3,14 @@ import { FaShareAlt, FaPlay } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import FlexMovieItems from "../FlexMovieItems";
+import Rating from "../../components/Stars";
 
 const MovieInfo = ({ movie, setModalOpen }) => {
   return (
     <div className="w-full xl:h-screen relative text-white">
       <img
-        src={movie.image}
-        alt={movie.name}
+        src={movie?.image ? movie?.image : "/images/movie.jpg"}
+        alt={movie?.name}
         className="w-full hidden xl:inline-block h-full object-cover"
       />
       <div className="xl:bg-main bg-dry flex-colo xl:bg-opacity-90 xl:absolute top-0 left-0 right-0 bottom-0">
@@ -27,6 +28,10 @@ const MovieInfo = ({ movie, setModalOpen }) => {
               <h1 className="xl:text-4xl capitalize font-sans text-2xl font-bold">
                 {movie?.name}
               </h1>
+              {/* ratings */}
+              <div className="flex  text-lg gap-2 text-star">
+                <Rating value={movie?.rate} />
+              </div>
               {/* flex items */}
               <div className="flex items-center gap-4 font-medium text-dryGray">
                 <div className="flex-colo bg-subMain text-xs px-3 py-2 rounded">
@@ -36,7 +41,8 @@ const MovieInfo = ({ movie, setModalOpen }) => {
               </div>
               {/* description */}
               <p className="text-text text-sm leading-7">
-                {movie?.desc.slice(0, 400)}...
+                {movie?.desc ? movie?.desc.slice(0, 400) : ""}
+                ...
               </p>
               <div className="grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg">
                 {/* share */}
@@ -58,7 +64,7 @@ const MovieInfo = ({ movie, setModalOpen }) => {
                 {/* watch button */}
                 <div className="sm:col-span-2 col-span-3 flex justify-end font-medium text-sm">
                   <Link
-                    to={`/watch/${movie?.name}`}
+                    to={`/watch/${movie?._id}`}
                     className="bg-dry py-4 hover:bg-subMain transitions border-2 border-subMain rounded-full flex-rows gap-4 w-full sm:py-3"
                   >
                     <FaPlay className="w-3 h-3" /> Xem Phim

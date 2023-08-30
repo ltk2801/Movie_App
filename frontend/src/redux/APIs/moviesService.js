@@ -9,10 +9,11 @@ const getMoviesService = async (
   rate,
   year,
   search,
-  pageNumber
+  pageNumber,
+  limit
 ) => {
   const { data } = await Axios.get(
-    `/movies?category=${category}&time=${time}&language=${language}&rate=${rate}&year=${year}&search=${search}&pageNumber=${pageNumber}`
+    `/movies?category=${category}&time=${time}&language=${language}&rate=${rate}&year=${year}&search=${search}&pageNumber=${pageNumber}&limit=${limit}`
   );
   return data;
 };

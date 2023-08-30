@@ -111,7 +111,7 @@ exports.getMovies = asyncHandler(async (req, res) => {
     };
     // pagination
     const page = Number(req.query.pageNumber) || 1;
-    const limit = 4;
+    const limit = Number(req.query.limit) || 4;
     const skip = (page - 1) * limit;
 
     // find movies by query
@@ -130,12 +130,12 @@ exports.getMovies = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Failed to fetch. Try again",
+      message: "Đã có lỗi xảy ra !",
     });
   }
 });
 
-exports.getMovieById = asyncHandler(async (req, res) => {
+exports.getMovieById = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   try {
     // filter movie by id
@@ -148,13 +148,13 @@ exports.getMovieById = asyncHandler(async (req, res) => {
       });
     } else {
       res.status(404);
-      throw new Error("Movie not found");
+      throw new Error("Không tìm thấy bộ phim ! Vui lòng thử lại");
     }
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: "Failed to fetch. Try again ",
-    });
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    next(error);
   }
 });
 

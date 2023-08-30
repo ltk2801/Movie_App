@@ -9,7 +9,7 @@ import { Empty } from "../Notifications/Empty";
 const PopularMovie = ({ isLoading, movies }) => {
   return (
     <div className="my-16">
-      <Titles title="Những bộ phim nổi tiếng" Icon={BsCollectionFill} />
+      <Titles title="Những bộ phim Hot CineTime" Icon={BsCollectionFill} />
 
       {isLoading ? (
         <Loader />
