@@ -1,7 +1,7 @@
 import * as moviesConstant from "../Constants/moviesConstant";
 
 //  GET ALL MOVIES
-export const GetAllMoviesReducer = (state = { movies: [] }, action) => {
+export const getAllMoviesReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstant.MOVIES_LIST_REQUEST:
       return { isLoading: true };
@@ -37,7 +37,7 @@ export const searchKeyMoviesReducer = (state = {}, action) => {
 
 // GET RANDOM MOVIE
 
-export const GetRandomMoviesReducer = (state = { movies: [] }, action) => {
+export const getRandomMoviesReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstant.MOVIES_RANDOM_REQUEST:
       return { isLoading: true };
@@ -53,7 +53,7 @@ export const GetRandomMoviesReducer = (state = { movies: [] }, action) => {
   }
 };
 // GET  MOVIE
-export const GetMovieReducer = (state = { movie: {} }, action) => {
+export const getMovieReducer = (state = { movie: {} }, action) => {
   switch (action.type) {
     case moviesConstant.MOVIE_DETAILS_REQUEST:
       return { isLoading: true };
@@ -71,7 +71,7 @@ export const GetMovieReducer = (state = { movie: {} }, action) => {
   }
 };
 // GET TOP RATED MOVIE
-export const GetTopRatedMoviesReducer = (state = { movies: [] }, action) => {
+export const getTopRatedMoviesReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstant.MOVIES_TOP_RATED_REQUEST:
       return { isLoading: true };
@@ -82,6 +82,25 @@ export const GetTopRatedMoviesReducer = (state = { movies: [] }, action) => {
       };
     case moviesConstant.MOVIES_TOP_RATED_FAIL:
       return { isLoading: false, isError: action.payload };
+    default:
+      return state;
+  }
+};
+
+// CREATE REVIEW
+export const createReviewMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case moviesConstant.CREATE_REVIEW_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.CREATE_REVIEW_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case moviesConstant.CREATE_REVIEW_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case moviesConstant.CREATE_REVIEW_RESET:
+      return {};
     default:
       return state;
   }

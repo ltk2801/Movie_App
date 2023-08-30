@@ -5,7 +5,7 @@ import { ErrorsAction, tokenProtection } from "../Protection";
 import toast from "react-hot-toast";
 
 // get all movies action
-const getAllMoviesAction =
+export const getAllMoviesAction =
   ({
     category = "",
     time = "",
@@ -85,4 +85,27 @@ export const getTopRatedMoviesAction = () => async (dispatch) => {
     ErrorsAction(error, dispatch, moviesConstant.MOVIES_TOP_RATED_FAIL);
   }
 };
-export { getAllMoviesAction };
+
+// review movie action
+
+export const reviewMovieAction =
+  ({ id, review }) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: moviesConstant.CREATE_REVIEW_REQUEST });
+      const response = await moviesAPIs.reviewMovieService(
+        tokenProtection(getState),
+        id,
+        review
+      );
+      dispatch({
+        type: moviesConstant.CREATE_REVIEW_SUCCESS,
+        payload: response,
+      });
+      toast.success("Đánh giá thành công");
+      dispatch({ type: moviesConstant.CREATE_REVIEW_RESET });
+      dispatch(getMovieByIdAction(id));
+    } catch (error) {
+      ErrorsAction(error, dispatch, moviesConstant.CREATE_REVIEW_FAIL);
+    }
+  };

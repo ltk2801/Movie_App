@@ -21,11 +21,12 @@ const rootReducer = combineReducers({
   categoryDelete: Category.DeleteCategoryReducer,
 
   // movie reducers
-  getAllMovie: Movie.GetAllMoviesReducer,
+  getAllMovie: Movie.getAllMoviesReducer,
   keySearchMovies: Movie.searchKeyMoviesReducer,
-  getRandomMovies: Movie.GetRandomMoviesReducer,
-  getMovieById: Movie.GetMovieReducer,
-  getTopRatedMovie: Movie.GetTopRatedMoviesReducer,
+  getRandomMovies: Movie.getRandomMoviesReducer,
+  getMovieById: Movie.getMovieReducer,
+  getTopRatedMovie: Movie.getTopRatedMoviesReducer,
+  reviewMovie: Movie.createReviewMovieReducer,
 });
 
 // get userInfo from localStorage
