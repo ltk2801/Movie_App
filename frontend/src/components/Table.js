@@ -9,9 +9,9 @@ const Text =
   "text-sm text-left leading-6 whitespace-nowrap px-5 py-3 uppercase";
 
 // Rows
-const Rows = (movie, i, admin) => {
+const Rows = ({ movie, admin, onDeleteFunction, isLoading }) => {
   return (
-    <tr key={i}>
+    <tr>
       <td className={`${Text}`}>
         <div className="w-12 p-1 bg-dry border border-border h-12 rounded overflow-hidden">
           <img
@@ -47,6 +47,13 @@ const Rows = (movie, i, admin) => {
             >
               <GoEye />
             </Link>
+            <button
+              disabled={isLoading}
+              onClick={() => onDeleteFunction(movie?._id)}
+              className="bg-subMain text-white rounded flex-colo w-6 h-6"
+            >
+              <MdDelete />
+            </button>
           </>
         )}
       </td>
@@ -55,7 +62,7 @@ const Rows = (movie, i, admin) => {
 };
 
 // Table
-const Table = ({ data, admin }) => {
+const Table = ({ data, admin, onDeleteFunction, isLoading }) => {
   return (
     <div className=" overflow-hidden relative w-full">
       <table className="w-full table-auto border border-border divide-y divide-border">
@@ -85,7 +92,15 @@ const Table = ({ data, admin }) => {
           </tr>
         </thead>
         <tbody className="bg-main divide-y divide-gray-800">
-          {data.map((movie, i) => Rows(movie, i, admin))}
+          {data.map((movie, i) => (
+            <Rows
+              movie={movie}
+              key={i}
+              admin={admin}
+              onDeleteFunction={onDeleteFunction}
+              isLoading={isLoading}
+            />
+          ))}
         </tbody>
       </table>
     </div>

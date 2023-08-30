@@ -5,7 +5,7 @@ export const ErrorsAction = (error, dispatch, action) => {
     error.response && error.response.data.message
       ? error.response.data.message
       : error.message;
-  if (message === "Không được cấp quyền, Token đã thất bại") {
+  if (message === "Not authorized, no token") {
     dispatch(logoutAction());
   }
   return dispatch({ type: action, payload: message });
@@ -18,7 +18,6 @@ export const tokenProtection = (getState) => {
     // lấy ra userInfo từ userLogin từ getState lấy ra trạng thái của redux
     userLogin: { userInfo },
   } = getState();
-
   if (!userInfo?.token) {
     return null;
   } else {

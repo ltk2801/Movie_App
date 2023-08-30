@@ -104,6 +104,38 @@ const getFavoriteMoviesAction = () => async (dispatch, getState) => {
     ErrorsAction(error, dispatch, userConstants.GET_FAVORITE_MOVIES_FAIL);
   }
 };
+// add  favorite movies action
+const likeFavoriteMovieAction = (movieId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.LIKE_MOVIE_REQUEST });
+    const response = await userApi.likeMovieService(
+      movieId,
+      tokenProtection(getState)
+    );
+    dispatch({
+      type: userConstants.LIKE_MOVIE_SUCCESS,
+      payload: response,
+    });
+    toast.success("Thêm thành công vào danh sách yêu thích");
+    dispatch(getFavoriteMoviesAction());
+  } catch (error) {
+    ErrorsAction(error, dispatch, userConstants.LIKE_MOVIE_FAIL);
+  }
+};
+
+// delete  favorite movie action
+const deleteLikeMovieAction = (movieId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.DELETE_LIKE_MOVIE_REQUEST });
+    await userApi.deleteLikeMovieService(movieId, tokenProtection(getState));
+    dispatch({ type: userConstants.DELETE_LIKE_MOVIE_SUCCESS });
+    toast.success("Xóa  thành công");
+    dispatch(getFavoriteMoviesAction());
+  } catch (error) {
+    ErrorsAction(error, dispatch, userConstants.DELETE_LIKE_MOVIE_FAIL);
+  }
+};
+
 // delete all favorite movies action
 const deleteFavoriteMoviesAction = () => async (dispatch, getState) => {
   try {
@@ -157,4 +189,6 @@ export {
   deleteFavoriteMoviesAction,
   getAllUsersAction,
   deleteUserAction,
+  likeFavoriteMovieAction,
+  deleteLikeMovieAction,
 };

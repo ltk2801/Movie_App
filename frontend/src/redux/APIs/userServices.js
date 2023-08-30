@@ -1,6 +1,7 @@
 import Axios from "./Axios";
 
 // *********************** PUBLIC API **************************
+// truyền vào body sẽ là 1 object
 // REGISTER NEW USER API CALL
 
 const registerService = async (user) => {
@@ -83,6 +84,26 @@ const deleteFavoriteMoviesService = async (token) => {
   return data;
 };
 
+// like movie API call
+const likeMovieService = async (movieId, token) => {
+  const { data } = await Axios.post("/users/favorites", movieId, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data.data;
+};
+
+// delete like movie API call
+const deleteLikeMovieService = async (movieId, token) => {
+  const { data } = await Axios.delete(`/users/favorites/${movieId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data.data;
+};
+
 // *********************** ADMIN API **************************
 
 // admin get all users
@@ -116,4 +137,6 @@ export {
   deleteFavoriteMoviesService,
   getAllUsersService,
   deleteUserService,
+  likeMovieService,
+  deleteLikeMovieService,
 };

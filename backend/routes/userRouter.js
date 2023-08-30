@@ -15,6 +15,7 @@ router.put("/password", protect, userController.changeUserPassword);
 router.get("/favorites", protect, userController.getLikedMovies);
 router.post("/favorites", protect, userController.addLikedMovies);
 router.delete("/favorites", protect, userController.deleteLikedMovies);
+router.delete("/favorites/:id", protect, userController.deleteLikedMovie);
 
 // ADMIN ROUTES
 router.get("/", protect, admin, userController.getUsers);

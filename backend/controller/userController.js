@@ -219,6 +219,30 @@ exports.addLikedMovies = asyncHandler(async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+exports.deleteLikedMovie = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  try {
+    // find user in DB
+    const user = await User.findById(req.user._id);
+    // if user exists add movie to liked movies and save it in DB
+    if (user) {
+      // else add movie to liked movies and save it in DB
+      user.likedMovies.remove(id);
+      await user.save();
+      res.status(200).json({
+        success: true,
+        message: "Remove likedMovie user successfully",
+        data: user.likedMovies,
+      });
+    } else {
+      res.status(404);
+      throw new Error("Movie not found");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 exports.deleteLikedMovies = asyncHandler(async (req, res) => {
   try {
     // find user in DB

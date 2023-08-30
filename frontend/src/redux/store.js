@@ -14,6 +14,8 @@ const rootReducer = combineReducers({
   userDeleteFavoriteMovies: User.userDeleteFavoriteMoviesReducer,
   adminGetAllUsers: User.adminGetAllUsersReducer,
   adminDeleteUser: User.adminDeleteUserReducer,
+  userLikeFavoriteMovie: User.userLikeFavoriteMovieReducer,
+  userDeleteLikeFavoriteMovie: User.userDeleteLikeFavoriteMovieReducer,
   // Category reducers
   categoryGetAll: Category.GetAllCategoriesReducer,
   categoryCreate: Category.CreateCategoryReducer,

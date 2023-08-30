@@ -7,8 +7,19 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loader from "../Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { LikeMovie, IfMovieLiked } from "../../context/Functionalities";
 
 const Swipper = ({ sameClass, movies }) => {
+  const { isLoading } = useSelector((state) => state.userLikeFavoriteMovie);
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  // if liked function kiểm tra nếu đã yêu thích rồi thì không cho add thêm và sẽ chuyển màu khác
+  const isLiked = (movie) => {
+    return IfMovieLiked(movie);
+  };
+
   return (
     <Swiper
       direction="vertical"
@@ -40,7 +51,14 @@ const Swipper = ({ sameClass, movies }) => {
               >
                 Xem phim
               </Link>
-              <button className="bg-white hover:text-subMain transitions text-white px-4 py-3 rounded text-sm bg-opacity-30">
+              <button
+                onClick={() => LikeMovie(movie, dispatch, userInfo)}
+                disabled={isLiked(movie) || isLoading}
+                className={`bg-white 
+              ${
+                isLiked(movie) ? "text-subMain" : "text-white"
+              } hover:text-subMain transitions px-4 py-3 rounded text-sm bg-opacity-30`}
+              >
                 <FaHeart />
               </button>
             </div>

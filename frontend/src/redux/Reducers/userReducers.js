@@ -122,6 +122,44 @@ export const userGetFavoriteMoviesReducer = (
   }
 };
 
+// Add FAVORITE MOVIE
+export const userLikeFavoriteMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.LIKE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case userConstants.LIKE_MOVIE_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case userConstants.LIKE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case userConstants.LIKE_MOVIE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+// Delete FAVORITE MOVIE
+export const userDeleteLikeFavoriteMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.DELETE_LIKE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case userConstants.DELETE_LIKE_MOVIE_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case userConstants.DELETE_LIKE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case userConstants.DELETE_LIKE_MOVIE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
 // DELETE FAVORITE MOVIES
 export const userDeleteFavoriteMoviesReducer = (state = {}, action) => {
   switch (action.type) {

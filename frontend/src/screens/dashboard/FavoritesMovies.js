@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getFavoriteMoviesAction,
   deleteFavoriteMoviesAction,
+  deleteLikeMovieAction,
 } from "../../redux/Actions/userActions";
 import toast from "react-hot-toast";
 import Loader from "../../components/Notifications/Loader";
@@ -24,10 +25,23 @@ const FavoritesMovies = () => {
     isSuccess: deleteSuccess,
   } = useSelector((state) => state.userDeleteFavoriteMovies);
 
+  const {
+    isLoading: deleteMovieLoading,
+    isError: deleteMovieError,
+    isSuccess: deleteMovieSuccess,
+  } = useSelector((state) => state.userDeleteLikeFavoriteMovie);
+
   // delete movies handler
   const deleteMoviesHandler = () => {
     window.confirm("Bạn thật sự muốn xóa toàn bộ danh sách phim yêu thích ?") &&
       dispatch(deleteFavoriteMoviesAction());
+  };
+
+  // delele movie handler
+  const deleteFavoriteMovieHandler = (id) => {
+    window.confirm(
+      "Bạn thật sự muốn xóa bộ phim này khỏi danh sách yêu thích ?"
+    ) && dispatch(deleteLikeMovieAction(id));
   };
 
   // useEffect
@@ -41,7 +55,23 @@ const FavoritesMovies = () => {
           : "DELETE_FAVORITE_MOVIES_RESET",
       });
     }
-  }, [dispatch, isError, deleteError, deleteSuccess]);
+    if (deleteMovieError) {
+      toast.error(deleteMovieError);
+      dispatch({
+        type: "DELETE_LIKE_MOVIE_RESET",
+      });
+    }
+    if (deleteMovieSuccess) {
+      dispatch({ type: "DELETE_LIKE_MOVIE_RESET" });
+    }
+  }, [
+    dispatch,
+    isError,
+    deleteError,
+    deleteSuccess,
+    deleteMovieError,
+    deleteMovieSuccess,
+  ]);
 
   return (
     <SideBar>
@@ -61,7 +91,12 @@ const FavoritesMovies = () => {
         {isLoading ? (
           <Loader />
         ) : likedMovies.length > 0 ? (
-          <Table data={likedMovies} admin={false} />
+          <Table
+            data={likedMovies}
+            admin={false}
+            onDeleteFunction={deleteFavoriteMovieHandler}
+            isLoading={deleteMovieLoading}
+          />
         ) : (
           <Empty message="Danh sách những bộ phim yêu thích trống" />
         )}
