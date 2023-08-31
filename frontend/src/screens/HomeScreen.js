@@ -37,7 +37,7 @@ const HomeScreen = () => {
     //get random movies
     dispatch(getRandomMoviesAction());
     // get all movies
-    dispatch(getAllMoviesAction({}));
+    dispatch(getAllMoviesAction({ limit: 7 }));
     // get top rated movies
     dispatch(getTopRatedMoviesAction());
     // errors

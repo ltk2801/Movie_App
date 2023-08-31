@@ -34,6 +34,7 @@ const CategoryModal = ({ modalOpen, setModalOpen, category }) => {
       } else {
         dispatch(CreateCategoryAction({ title: title }));
         setTitle("");
+        setModalOpen(!modalOpen);
       }
     } else {
       toast.error("Vui lòng nhập tên thể loại");

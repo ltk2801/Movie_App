@@ -28,6 +28,7 @@ const CreateCategoryAction = (title) => async (dispatch, getState) => {
     );
     dispatch({ type: categoriesConstant.CREATE_CATEGORY_SUCCESS });
     toast.success("Tạo thể loại thành công");
+    dispatch(getAllCategoriesAction());
   } catch (error) {
     ErrorsAction(error, dispatch, categoriesConstant.CREATE_CATEGORY_FAIL);
   }
