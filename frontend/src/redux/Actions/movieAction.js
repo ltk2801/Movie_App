@@ -15,6 +15,7 @@ export const getAllMoviesAction =
     search = "",
     pageNumber = "",
     limit = "",
+    sort = "",
   }) =>
   async (dispatch) => {
     try {
@@ -29,7 +30,8 @@ export const getAllMoviesAction =
         year,
         search,
         pageNumber,
-        limit
+        limit,
+        sort
       );
       dispatch({
         type: moviesConstant.MOVIES_LIST_SUCCESS,
@@ -127,4 +129,48 @@ export const deleteMovieAction = (id) => async (dispatch, getState) => {
   } catch (error) {
     ErrorsAction(error, dispatch, moviesConstant.DELETE_MOVIE_FAIL);
   }
+};
+
+// create movie action
+export const createMovieAction = (movie) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: moviesConstant.CREATE_MOVIE_REQUEST });
+    const response = await moviesAPIs.createMovieService(
+      tokenProtection(getState),
+      movie
+    );
+    dispatch({
+      type: moviesConstant.CREATE_MOVIE_SUCCESS,
+      payload: response,
+    });
+    toast.success("Đã thêm thành công phim ");
+    dispatch(deleteAllCastAction());
+  } catch (error) {
+    ErrorsAction(error, dispatch, moviesConstant.CREATE_MOVIE_FAIL);
+  }
+};
+
+// *********** CASTS ****************
+
+// add cast
+export const addCastAction = (cast) => async (dispatch, getState) => {
+  dispatch({ type: moviesConstant.ADD_CAST_MOVIE, payload: cast });
+  localStorage.setItem("casts", JSON.stringify(getState().casts.casts));
+};
+
+// remove cast
+export const removeCastAction = (id) => async (dispatch, getState) => {
+  dispatch({ type: moviesConstant.DELETE_CAST_MOVIE, payload: id });
+  localStorage.setItem("casts", JSON.stringify(getState().casts.casts));
+};
+// update cast
+export const updateCastAction = (cast) => async (dispatch, getState) => {
+  dispatch({ type: moviesConstant.EDIT_CAST_MOVIE, payload: cast });
+  localStorage.setItem("casts", JSON.stringify(getState().casts.casts));
+};
+
+// delete all cast
+export const deleteAllCastAction = () => async (dispatch) => {
+  dispatch({ type: moviesConstant.RESET_CAST_MOVIE });
+  localStorage.removeItem("casts");
 };

@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GoEye } from "react-icons/go";
 
-const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
+const Head = "text-xs text-left text-main font-semibold px-3 py-2 uppercase";
 const Text =
   "text-sm text-left leading-6 whitespace-nowrap px-5 py-3 uppercase";
 
@@ -29,6 +29,12 @@ const Rows = ({ movie, admin, onDeleteFunction, isLoading }) => {
       <td className={`${Text} float-right flex-rows gap-2`}>
         {admin ? (
           <>
+            <Link
+              to={`/movie/${movie?._id}`}
+              className="bg-subMain text-white rounded flex-colo w-6 h-6"
+            >
+              <GoEye />
+            </Link>
             <button className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2">
               Sửa <FaEdit className="text-green-500" />
             </button>
@@ -85,7 +91,7 @@ const Table = ({ data, admin, onDeleteFunction, isLoading }) => {
               Ngôn ngữ
             </th>
             <th scope="col" className={`${Head}  border-r border-border`}>
-              năm phát hành
+              phát hành
             </th>
             <th scope="col" className={`${Head}  border-r border-border`}>
               Thời gian

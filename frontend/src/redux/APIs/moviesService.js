@@ -10,10 +10,11 @@ const getMoviesService = async (
   year,
   search,
   pageNumber,
-  limit
+  limit,
+  sort
 ) => {
   const { data } = await Axios.get(
-    `/movies?category=${category}&time=${time}&language=${language}&rate=${rate}&year=${year}&search=${search}&pageNumber=${pageNumber}&limit=${limit}`
+    `/movies?category=${category}&time=${time}&language=${language}&rate=${rate}&year=${year}&search=${search}&pageNumber=${pageNumber}&limit=${limit}&sort=${sort}`
   );
   return data;
 };
@@ -55,6 +56,15 @@ export const deleteMovieService = async (token, id) => {
     },
   });
   return data;
+};
+
+export const createMovieService = async (token, movie) => {
+  const { data } = await Axios.post(`/movies`, movie, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data.data;
 };
 
 export { getMoviesService };

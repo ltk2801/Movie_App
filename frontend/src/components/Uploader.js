@@ -4,7 +4,7 @@ import { FiUploadCloud } from "react-icons/fi";
 import { uploadImageservice } from "../redux/APIs/imageUploadService";
 import Loader from "./Notifications/Loader";
 
-const Uploader = ({ setImageUrl }) => {
+const Uploader = ({ setImageUrl, video }) => {
   const [loading, setLoading] = useState(false);
 
   // upload file
@@ -39,12 +39,18 @@ const Uploader = ({ setImageUrl }) => {
           <span className="mx-auto flex-colo text-subMain text-3xl">
             <FiUploadCloud />
           </span>
-          <p className="text-sm mt-2">Kéo hình ảnh của bạn vào đây</p>
+          {video ? (
+            <p className="text-sm mt-2">Tải lên video của bạn</p>
+          ) : (
+            <p className="text-sm mt-2">Kéo hình ảnh của bạn vào đây</p>
+          )}
           <em className="text-xs text-border">
             {isDragActive
               ? "Kéo thả hình ảnh"
               : isDragReject
               ? "Loại tệp này không được chấp nhận..."
+              : video
+              ? "(Chỉ có file có đuôi .mp4  được chấp nhận)"
               : " (Chỉ có file có đuôi .jpg and .png được chấp nhận)"}
           </em>
         </div>

@@ -72,6 +72,7 @@ const movieSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
         image: { type: String },
+        id: { type: Number },
       },
     ],
   },

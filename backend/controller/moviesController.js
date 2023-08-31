@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 exports.createMovie = asyncHandler(async (req, res) => {
   const newMovie = new Movie(req.body);
+  // console.log(newMovie);
   try {
     const savedMovie = await newMovie.save();
     res.status(200).json({
@@ -73,7 +74,7 @@ exports.deleteMovie = asyncHandler(async (req, res, next) => {
 exports.getMovies = asyncHandler(async (req, res) => {
   try {
     // filter movies by category,time,language,rate,year and search
-    const { category, time, language, rate, year, search } = req.query;
+    const { category, time, language, rate, year, search, sort } = req.query;
 
     // Tạo một đối tượng để ánh xạ các khoảng thời gian tương ứng
     const timeRanges = {
@@ -115,7 +116,10 @@ exports.getMovies = asyncHandler(async (req, res) => {
     const skip = (page - 1) * limit;
 
     // find movies by query
-    const movies = await Movie.find(query).skip(skip).limit(limit);
+
+    const movies = sort
+      ? await Movie.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit)
+      : await Movie.find(query).skip(skip).limit(limit);
 
     // get total number of movies
     const count = await Movie.countDocuments(query);

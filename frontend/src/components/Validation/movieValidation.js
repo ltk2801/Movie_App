@@ -12,4 +12,19 @@ const reviewValidation = yup.object().shape({
     .max(5, "Vui lòng đánh giá số "),
 });
 
-export { reviewValidation };
+const movieValidation = yup.object().shape({
+  name: yup
+    .string()
+    .required("Vui lòng nhập vào tên phim")
+    .max(50, "Tên phim chỉ được tối đa 50 ký tự"),
+  time: yup.number().required("Vui lòng nhập vào thời lượng phim"),
+  language: yup.string().required("Vui lòng nhập vào ngôn ngữ phim"),
+  year: yup.number().required("Vui lòng nhập vào năm sản xuất"),
+  category: yup.string().required("Vui lòng nhập vào thể loại phim"),
+  desc: yup
+    .string()
+    .required("Vui lòng nhập vào mô tả ngắn về bộ phim")
+    .max(800, "Mô tả ngắn chỉ được tối đa 800 ký tự"),
+});
+
+export { reviewValidation, movieValidation };

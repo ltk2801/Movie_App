@@ -8,14 +8,6 @@ const uploadRouter = express.Router();
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  fileFilter: (req, file, cb) => {
-    // Kiểm tra kiểu tệp
-    if (file.mimetype === "image/png" || file.mimetype === "image/jpeg") {
-      cb(null, true); // Chấp nhận tệp
-    } else {
-      cb(new Error("Only .png and .jpg files are allowed"), false); // Từ chối tệp
-    }
-  },
 });
 
 uploadRouter.post("/", upload.single("file"), async (req, res) => {

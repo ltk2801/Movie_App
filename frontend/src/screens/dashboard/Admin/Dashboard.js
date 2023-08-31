@@ -49,7 +49,7 @@ const Dashboard = () => {
     //get all users
     dispatch(getAllUsersAction());
     // get all movies
-    dispatch(getAllMoviesAction({ limit: 5 }));
+    dispatch(getAllMoviesAction({ sort: true, limit: 5 }));
     // errors
     if (isError || userError || catError || deleteError) {
       toast.error(isError || userError || catError || deleteError);
@@ -82,6 +82,7 @@ const Dashboard = () => {
   const nextPage = () => {
     dispatch(
       getAllMoviesAction({
+        sort: true,
         pageNumber: page + 1,
         limit: 5,
       })
@@ -91,6 +92,7 @@ const Dashboard = () => {
   const prevPage = () => {
     dispatch(
       getAllMoviesAction({
+        sort: true,
         pageNumber: page - 1,
         limit: 5,
       })
@@ -120,7 +122,7 @@ const Dashboard = () => {
         ))}
       </div>
       <h3 className="text-md font-medium my-6 text-border">
-        Những Bộ Phim Gần Đây Nhất
+        Những Bộ Phim Đăng Tải Gần Đây
       </h3>
       {isLoading || deleteLoading ? (
         <Loader />

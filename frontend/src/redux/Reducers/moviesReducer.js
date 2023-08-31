@@ -123,3 +123,46 @@ export const deleteMovieRudecer = (state = {}, action) => {
       return state;
   }
 };
+
+// CREATE MOVIE
+export const createMovieRudecer = (state = {}, action) => {
+  switch (action.type) {
+    case moviesConstant.CREATE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.CREATE_MOVIE_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case moviesConstant.CREATE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case moviesConstant.CREATE_MOVIE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+// CASTS
+export const castsRudecer = (state = { casts: [] }, action) => {
+  switch (action.type) {
+    case moviesConstant.ADD_CAST_MOVIE:
+      return { casts: [...state.casts, action.payload] };
+    case moviesConstant.EDIT_CAST_MOVIE:
+      const updatedCasts = state.casts.map((cast) =>
+        cast.id === action.payload.id ? action.payload : cast
+      );
+      return {
+        casts: updatedCasts,
+      };
+    case moviesConstant.DELETE_CAST_MOVIE:
+      return {
+        ...state,
+        casts: state.casts.filter((cast) => cast.id !== action.payload),
+      };
+    case moviesConstant.RESET_CAST_MOVIE:
+      return { casts: [] };
+    default:
+      return state;
+  }
+};
