@@ -18,7 +18,7 @@ const movieValidation = yup.object().shape({
     .required("Vui lòng nhập vào tên phim")
     .max(50, "Tên phim chỉ được tối đa 50 ký tự"),
   time: yup.number().required("Vui lòng nhập vào thời lượng phim"),
-  language: yup.string().required("Vui lòng nhập vào ngôn ngữ phim"),
+  language: yup.string().required("Vui lòng nhập vào quốc gia của phim"),
   year: yup.number().required("Vui lòng nhập vào năm sản xuất"),
   category: yup.string().required("Vui lòng nhập vào thể loại phim"),
   desc: yup

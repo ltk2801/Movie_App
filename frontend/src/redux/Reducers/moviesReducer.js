@@ -143,6 +143,25 @@ export const createMovieRudecer = (state = {}, action) => {
   }
 };
 
+// UPDATE MOVIE
+export const updateMovieRudecer = (state = {}, action) => {
+  switch (action.type) {
+    case moviesConstant.UPDATE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.UPDATE_MOVIE_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case moviesConstant.UPDATE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case moviesConstant.UPDATE_MOVIE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
 // CASTS
 export const castsRudecer = (state = { casts: [] }, action) => {
   switch (action.type) {

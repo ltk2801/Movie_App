@@ -57,7 +57,7 @@ const MovieInfo = ({ movie, setModalOpen }) => {
                 {/* language */}
                 <div className="col-span-2 flex-colo font-medium text-sm">
                   <p>
-                    Ngôn Ngữ :{" "}
+                    Quốc Gia :{" "}
                     <span className="ml-2 truncate">{movie?.language}</span>
                   </p>
                 </div>

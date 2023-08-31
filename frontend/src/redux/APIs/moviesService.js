@@ -67,4 +67,13 @@ export const createMovieService = async (token, movie) => {
   return data.data;
 };
 
+export const updateMovieService = async (token, id, movie) => {
+  const { data } = await Axios.put(`/movies/${id}`, movie, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+
 export { getMoviesService };

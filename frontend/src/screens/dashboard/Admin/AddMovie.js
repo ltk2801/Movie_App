@@ -46,8 +46,6 @@ const AddMovie = () => {
     resolver: yupResolver(movieValidation),
   });
 
-  console.log();
-
   // on submit
   const onSubmit = (data) => {
     dispatch(
@@ -71,7 +69,7 @@ const AddMovie = () => {
   // useEffect
   useEffect(() => {
     // if modal is false then reset cast
-    if (!modalOpen) {
+    if (modalOpen === false) {
       setCast();
     }
     // if its success then reset form and navigate to add Movie
@@ -134,8 +132,8 @@ const AddMovie = () => {
         <div className="w-full grid md:grid-cols-2 gap-6">
           <div className="w-full">
             <Input
-              label="Ngôn Ngữ"
-              placeholder="Tiếng Anh"
+              label="Quốc Gia"
+              placeholder="Âu Mỹ"
               type="text"
               name="language"
               register={register("language")}

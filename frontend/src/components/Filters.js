@@ -69,13 +69,16 @@ const rateData = [
 ];
 
 const LanguageData = [
-  { title: "Ngôn Ngữ" },
-  { title: "Tiếng Việt" },
-  { title: "Tiếng Anh " },
-  { title: "Tiếng Trung Quốc " },
-  { title: "Tiếng Hàn Quốc " },
-  { title: "Tiếng Nhật Bản " },
-  { title: "Tiếng Pháp " },
+  { title: "Quốc Gia" },
+  { title: "Việt Nam" },
+  { title: "Trung Quốc" },
+  { title: "Âu Mỹ" },
+  { title: "Ấn Độ" },
+  { title: "Thái Lan" },
+  { title: "Hàn Quốc" },
+  { title: "Nhật Bản" },
+  { title: "Đài Loan" },
+  { title: "Hồng Kông" },
 ];
 
 const Filters = ({ categories, search }) => {
@@ -123,7 +126,7 @@ const Filters = ({ categories, search }) => {
         getAllMoviesAction({
           category: category?.title === "Thể Loại Phim" ? "" : category?.title,
           time: time?.title.replace(/\D/g, ""),
-          language: language?.title === "Ngôn Ngữ" ? "" : language?.title,
+          language: language?.title === "Quốc Gia" ? "" : language?.title,
           rate: rate?.title.replace(/\D/g, ""),
           year: year?.title.replace(/\D/g, ""),
           search: search ? search : "",

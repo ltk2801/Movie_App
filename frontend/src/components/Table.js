@@ -35,9 +35,12 @@ const Rows = ({ movie, admin, onDeleteFunction, isLoading }) => {
             >
               <GoEye />
             </Link>
-            <button className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2">
+            <Link
+              to={`/editmovie/${movie?._id}`}
+              className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2"
+            >
               Sửa <FaEdit className="text-green-500" />
-            </button>
+            </Link>
             <button
               disabled={isLoading}
               onClick={() => onDeleteFunction(movie?._id)}
@@ -88,7 +91,7 @@ const Table = ({ data, admin, onDeleteFunction, isLoading }) => {
               Thể loại
             </th>
             <th scope="col" className={`${Head}  border-r border-border`}>
-              Ngôn ngữ
+              Quốc gia
             </th>
             <th scope="col" className={`${Head}  border-r border-border`}>
               phát hành

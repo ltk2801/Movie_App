@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   adminDeleteMovie: Movie.deleteMovieRudecer,
   adminCreateMovie: Movie.createMovieRudecer,
   casts: Movie.castsRudecer,
+  adminUpdateMovie: Movie.updateMovieRudecer,
 });
 
 // get userInfo from localStorage

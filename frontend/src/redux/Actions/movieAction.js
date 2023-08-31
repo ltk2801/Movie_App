@@ -150,6 +150,27 @@ export const createMovieAction = (movie) => async (dispatch, getState) => {
   }
 };
 
+// create movie action
+export const updateMovieAction = (id, movie) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: moviesConstant.UPDATE_MOVIE_REQUEST });
+    const response = await moviesAPIs.updateMovieService(
+      tokenProtection(getState),
+      id,
+      movie
+    );
+    dispatch({
+      type: moviesConstant.UPDATE_MOVIE_SUCCESS,
+      payload: response,
+    });
+    toast.success("Đã cập nhật thành công phim ");
+    dispatch(getMovieByIdAction(id));
+    dispatch(deleteAllCastAction());
+  } catch (error) {
+    ErrorsAction(error, dispatch, moviesConstant.UPDATE_MOVIE_FAIL);
+  }
+};
+
 // *********** CASTS ****************
 
 // add cast

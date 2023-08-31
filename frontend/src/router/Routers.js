@@ -22,6 +22,7 @@ import AddMovie from "../screens/dashboard/Admin/AddMovie";
 import ScrollOnTop from "../ScrollOnTop";
 import ToastContainer from "../components/Notifications/ToastContainer";
 import { AdminProtectedRouter, ProtectedRouter } from "../ProtectedRouter";
+import EditMovie from "../screens/dashboard/Admin/EditMovie";
 
 const Routers = () => {
   return (
@@ -56,6 +57,7 @@ const Routers = () => {
               <Route path="/categories" element={<Categories />} />
               <Route path="/users" element={<Users />} />
               <Route path="/addmovie" element={<AddMovie />} />
+              <Route path="/editmovie/:id" element={<EditMovie />} />
             </Route>
           </Route>
         </Routes>

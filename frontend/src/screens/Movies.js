@@ -16,7 +16,7 @@ const MoviesPage = () => {
   const sameClass =
     "text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain";
   // all movies
-  const { isLoading, isError, movies, pages, page, totalMovies } = useSelector(
+  const { isLoading, isError, movies, pages, page } = useSelector(
     (state) => state.getAllMovie
   );
   // key search movie
@@ -28,10 +28,21 @@ const MoviesPage = () => {
   const { categories } = useSelector((state) => state.categoryGetAll);
 
   useEffect(() => {
+    dispatch(
+      getAllMoviesAction({
+        category: category,
+        time: time,
+        language: language,
+        rate: rate,
+        year: year,
+        search: search ? search : "",
+        limit: 7,
+      })
+    );
     if (isError) {
       toast.error(isError);
     }
-  }, [dispatch, isError]);
+  }, [dispatch, isError, category, time, language, rate, year, search]);
 
   // pagination next and pev pages
   const nextPage = () => {
@@ -44,6 +55,7 @@ const MoviesPage = () => {
         year: year,
         search: search ? search : "",
         pageNumber: page + 1,
+        limit: 7,
       })
     );
   };
@@ -58,6 +70,7 @@ const MoviesPage = () => {
         year: year,
         search: search ? search : "",
         pageNumber: page - 1,
+        limit: 7,
       })
     );
   };
@@ -68,7 +81,7 @@ const MoviesPage = () => {
       <p className="text-lg font-medium my-6">
         Tổng cộng{" "}
         <span className="font-bold text-subMain">
-          {totalMovies ? totalMovies : 0}
+          {movies ? movies.length : 0}
         </span>{" "}
         bộ phim được tìm thấy {search && `liên quan tới "${search}"`}
       </p>
