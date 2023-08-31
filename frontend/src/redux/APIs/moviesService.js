@@ -48,5 +48,13 @@ export const reviewMovieService = async (token, id, review) => {
 };
 
 // *********************** ADMIN API **************************
+export const deleteMovieService = async (token, id) => {
+  const { data } = await Axios.delete(`/movies/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
 
 export { getMoviesService };

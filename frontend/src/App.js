@@ -20,7 +20,7 @@ function App() {
       dispatch(getFavoriteMoviesAction());
     }
     if (isError || catError) {
-      toast.error("Đã có lỗi xảy ra ! Vui lòng thử lại sau");
+      toast.error(isError || catError);
       dispatch({ type: "LIKE_MOVIE_RESET" });
     }
     if (isSuccess) {

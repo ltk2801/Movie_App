@@ -105,3 +105,21 @@ export const createReviewMovieReducer = (state = {}, action) => {
       return state;
   }
 };
+
+// ************************* ADMIN *****************************
+// DELETE MOVIE
+export const deleteMovieRudecer = (state = {}, action) => {
+  switch (action.type) {
+    case moviesConstant.DELETE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case moviesConstant.DELETE_MOVIE_SUCCESS:
+      return {
+        isLoading: false,
+        isSuccess: true,
+      };
+    case moviesConstant.DELETE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    default:
+      return state;
+  }
+};

@@ -29,6 +29,7 @@ const rootReducer = combineReducers({
   getMovieById: Movie.getMovieReducer,
   getTopRatedMovie: Movie.getTopRatedMoviesReducer,
   reviewMovie: Movie.createReviewMovieReducer,
+  adminDeleteMovie: Movie.deleteMovieRudecer,
 });
 
 // get userInfo from localStorage

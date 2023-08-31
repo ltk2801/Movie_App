@@ -109,3 +109,22 @@ export const reviewMovieAction =
       ErrorsAction(error, dispatch, moviesConstant.CREATE_REVIEW_FAIL);
     }
   };
+
+// delete movie action
+export const deleteMovieAction = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: moviesConstant.DELETE_MOVIE_REQUEST });
+    const response = await moviesAPIs.deleteMovieService(
+      tokenProtection(getState),
+      id
+    );
+    dispatch({
+      type: moviesConstant.DELETE_MOVIE_SUCCESS,
+      payload: response,
+    });
+    toast.success("Đã xóa thành công phim ");
+    dispatch(getAllMoviesAction({}));
+  } catch (error) {
+    ErrorsAction(error, dispatch, moviesConstant.DELETE_MOVIE_FAIL);
+  }
+};

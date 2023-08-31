@@ -6,10 +6,7 @@ import Table2 from "../../../components/Table2";
 import CategoryModal from "../../../components/Modals/CategoryModal";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  DeleteCategoryAction,
-  getAllCategoriesAction,
-} from "../../../redux/Actions/categoryAction";
+import { DeleteCategoryAction } from "../../../redux/Actions/categoryAction";
 import Loader from "../../../components/Notifications/Loader";
 import { Empty } from "../../../components/Notifications/Empty";
 import toast from "react-hot-toast";
@@ -39,8 +36,6 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    // get all categories
-    dispatch(getAllCategoriesAction());
     if (modalOpen === false) {
       setCategory();
     }
