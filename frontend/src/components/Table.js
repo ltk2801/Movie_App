@@ -3,6 +3,7 @@ import { FaCloudDownloadAlt, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GoEye } from "react-icons/go";
+import toast from "react-hot-toast";
 
 const Head = "text-xs text-left text-main font-semibold px-3 py-2 uppercase";
 const Text =
@@ -10,6 +11,10 @@ const Text =
 
 // Rows
 const Rows = ({ movie, admin, onDeleteFunction, isLoading }) => {
+  const clickHandler = (e) => {
+    e.preventDefault();
+    toast.error("Chức năng hiện đang bảo trì");
+  };
   return (
     <tr>
       <td className={`${Text}`}>
@@ -51,7 +56,10 @@ const Rows = ({ movie, admin, onDeleteFunction, isLoading }) => {
           </>
         ) : (
           <>
-            <button className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2">
+            <button
+              onClick={clickHandler}
+              className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2"
+            >
               Tải về <FaCloudDownloadAlt className="text-green-500" />
             </button>
             <Link

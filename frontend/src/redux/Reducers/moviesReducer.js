@@ -165,6 +165,35 @@ export const updateMovieRudecer = (state = {}, action) => {
 // CASTS
 export const castsRudecer = (state = { casts: [] }, action) => {
   switch (action.type) {
+    case moviesConstant.GET_CAST_MOVIE:
+      const castsMovie = state.casts?.length > 0 ? state.casts : action.payload;
+      return { casts: castsMovie };
+    case moviesConstant.ADD_CAST_MOVIE:
+      return { casts: [...state.casts, action.payload] };
+    case moviesConstant.EDIT_CAST_MOVIE:
+      const updatedCasts = state.casts.map((cast) =>
+        cast.id === action.payload.id ? action.payload : cast
+      );
+      return {
+        casts: updatedCasts,
+      };
+    case moviesConstant.DELETE_CAST_MOVIE:
+      return {
+        ...state,
+        casts: state.casts.filter((cast) => cast.id !== action.payload),
+      };
+    case moviesConstant.RESET_CAST_MOVIE:
+      return { casts: [] };
+    default:
+      return state;
+  }
+};
+
+export const castsRudecerUpdate = (state = { casts: [] }, action) => {
+  switch (action.type) {
+    case moviesConstant.GET_CAST_MOVIE:
+      const castsMovie = state.casts?.length > 0 ? state.casts : action.payload;
+      return { casts: castsMovie };
     case moviesConstant.ADD_CAST_MOVIE:
       return { casts: [...state.casts, action.payload] };
     case moviesConstant.EDIT_CAST_MOVIE:

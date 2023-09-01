@@ -33,6 +33,7 @@ const rootReducer = combineReducers({
   adminCreateMovie: Movie.createMovieRudecer,
   casts: Movie.castsRudecer,
   adminUpdateMovie: Movie.updateMovieRudecer,
+  castsUpdate: Movie.castsRudecerUpdate,
 });
 
 // get userInfo from localStorage

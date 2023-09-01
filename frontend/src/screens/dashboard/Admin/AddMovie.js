@@ -213,9 +213,9 @@ const AddMovie = () => {
           </button>
           <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-4">
             {casts?.length > 0 &&
-              casts?.map((cast) => (
+              casts?.map((cast, i) => (
                 <div
-                  key={cast?.id}
+                  key={cast?.id ? cast.id : i}
                   className="p-2 italic text-xs text-text rounded flex-colo bg-main border border-border"
                 >
                   <img

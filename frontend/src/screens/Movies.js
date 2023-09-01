@@ -36,7 +36,7 @@ const MoviesPage = () => {
         rate: rate,
         year: year,
         search: search ? search : "",
-        limit: 7,
+        limit: 10,
       })
     );
     if (isError) {
@@ -55,7 +55,7 @@ const MoviesPage = () => {
         year: year,
         search: search ? search : "",
         pageNumber: page + 1,
-        limit: 7,
+        limit: 10,
       })
     );
   };
@@ -70,7 +70,7 @@ const MoviesPage = () => {
         year: year,
         search: search ? search : "",
         pageNumber: page - 1,
-        limit: 7,
+        limit: 10,
       })
     );
   };

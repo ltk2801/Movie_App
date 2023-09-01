@@ -173,6 +173,12 @@ export const updateMovieAction = (id, movie) => async (dispatch, getState) => {
 
 // *********** CASTS ****************
 
+// get cast
+export const getCastAction = (casts) => async (dispatch, getState) => {
+  dispatch({ type: moviesConstant.GET_CAST_MOVIE, payload: casts });
+  localStorage.setItem("casts", JSON.stringify(getState().casts.casts));
+};
+
 // add cast
 export const addCastAction = (cast) => async (dispatch, getState) => {
   dispatch({ type: moviesConstant.ADD_CAST_MOVIE, payload: cast });

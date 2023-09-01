@@ -7,6 +7,7 @@ import { getMovieByIdAction } from "../redux/Actions/movieAction";
 import Loader from "../components/Notifications/Loader";
 import { RiMovie2Line } from "react-icons/ri";
 import { IfMovieLiked, LikeMovie } from "../context/Functionalities";
+import toast from "react-hot-toast";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -25,6 +26,11 @@ const WatchPage = () => {
 
   // if liked function kiểm tra nếu đã yêu thích rồi thì không cho add thêm và sẽ chuyển màu khác
   const isLiked = (movie) => IfMovieLiked(movie);
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    toast.error("Chức năng hiện đang bảo trì");
+  };
 
   // useEffect
   useEffect(() => {
@@ -52,7 +58,10 @@ const WatchPage = () => {
             >
               <FaHeart />
             </button>
-            <button className="bg-subMain flex-rows gap-2 hover:text-main transitions text-white rounded px-8 font-medium py-3 text-sm">
+            <button
+              onClick={clickHandler}
+              className="bg-subMain flex-rows gap-2 hover:text-main transitions text-white rounded px-8 font-medium py-3 text-sm"
+            >
               <FaCloudDownloadAlt /> Download
             </button>
           </div>

@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { movieValidation } from "../../../components/Validation/movieValidation";
 import {
+  getCastAction,
   getMovieByIdAction,
   removeCastAction,
   updateMovieAction,
@@ -45,7 +46,7 @@ const EditMovie = () => {
     isError: editError,
     isSuccess,
   } = useSelector((state) => state.adminUpdateMovie);
-  const { casts } = useSelector((state) => state.casts);
+  const { casts } = useSelector((state) => state.castsUpdate);
   // validate userInput
   const {
     register,
@@ -64,11 +65,11 @@ const EditMovie = () => {
         image: imageWithoutTitle,
         titleImage: imageTitle,
         video: videoUrl,
-        casts: casts.length > 0 ? casts : movie?.casts,
+        casts: casts,
       })
     );
   };
-
+  // casts.length > 0 ? casts : movie?.casts,
   // delete cast handler
   const deleteCastHandler = (id) => {
     window.confirm("Bạn thật sự muốn xóa diễn viên khỏi phim này ?") &&
@@ -79,6 +80,7 @@ const EditMovie = () => {
   // useEffect
   useEffect(() => {
     if (movie?._id !== id) {
+      dispatch({ type: "RESET_CAST_MOVIE" });
       dispatch(getMovieByIdAction(id));
     } else {
       setValue("name", movie?.name);
@@ -105,6 +107,8 @@ const EditMovie = () => {
       toast.error(editError);
       dispatch({ type: "UPDATE_MOVIE_RESET" });
     }
+
+    dispatch(getCastAction(movie?.casts));
   }, [
     dispatch,
     id,
@@ -258,8 +262,7 @@ const EditMovie = () => {
                   Thêm Diễn Viên
                 </button>
                 <span className="text-border text-xs">
-                  Nếu bạn thêm mới dàn diễn viên thì dàn diễn viên trước sẽ bị
-                  xóa hết . Vì vậy bạn nên cân nhắc kỹ khi update diễn viên
+                  Hãy thêm và chỉnh sửa diễn viên cho bộ phim của bạn
                 </span>
               </div>
 
