@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/UserModels.js");
 
 exports.generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id }, "MY_SECRET_KEY_2801", {
     expiresIn: "30d",
   });
 };
@@ -18,7 +18,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
     try {
       token = req.headers.authorization.split(" ")[1];
       // verify token and get user id
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, "MY_SECRET_KEY_2801");
       // get user id from decoded token
       req.user = await User.findById(decoded.id).select("-password");
       next();
