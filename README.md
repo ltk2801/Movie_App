@@ -6,4 +6,7 @@
 - Chức năng của admin ( Trang dashboard, danh sách phim ( Thêm, Xóa, Sửa Movie + diễn viên phim ), danh sách thể loại ( Thêm, Xóa , Sửa thể loại ) , danh sách người dùng ( Xóa, thay đổi role )...
 - Chức năng của người dùng ( xem phim, download phim, cập nhật hồ sơ ( update avatar,... ), thay đổi passwowrd, thêm phim vào danh sách ưa thich, comment review phim,...
 
+- BackEnd deloy on Render
+- frontend deloy on netlify
+- url : https://cinetime.netlify.app/
 - Link Demo : https://youtu.be/Vtwe895wbZc?si=3ADedsCS0VtFl9B8
