@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const { connectDB } = require("./config/db");
 
-const userRouter = require("./routes/UserRouter");
+const userRouter = require("./routes/userRouter");
 const moviesRouter = require("./routes/moviesRouter");
 const categoriesRouter = require("./routes/categoriesRouter");
 const uploadRouter = require("./controller/uploadFile");
